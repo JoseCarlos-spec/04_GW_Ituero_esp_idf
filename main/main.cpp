@@ -1,9 +1,3 @@
-/*
- * SPDX-FileCopyrightText: 2010-2022 Espressif Systems (Shanghai) CO LTD
- *
- * SPDX-License-Identifier: CC0-1.0
- */
-
 #include <Arduino.h>
 #include <SPI.h>              // SPI : miso mosi communication
 #include <LoRa.h>             // wireless lora
@@ -14,8 +8,6 @@
 
 #include "esp_log.h"
 static const char* TAG = "SCIGateway";
-
-//#include <rtc_wdt.h>        //to disable watchdog timeout blocking problem
 
 //wifi credentials
 const char* ssid = "DIGIFIBRA-fAUx";
@@ -32,139 +24,114 @@ const char* topic_respuesta = "nodo/respuesta";
 WiFiClient espClient;
 PubSubClient client(espClient);
 
-const int csPin = 5;          // LoRa radio chip select (const = var constante, no se puede alterar)
+const int csPin = 5;          // LoRa radio chip select
 const int resetPin = 14;      // LoRa radio reset
-const int irqPin = 4;         // change for your board; must be a hardware interrupt pin
+const int irqPin = 4;         // IRQ pin
 
 String outgoing;              // outgoing message
 String receivedMsg;           // incoming message
 byte msgID = 0;               // ID of the received message
 byte localAddress = 0x01;     // address of this device
-byte destination = 0x02;      // destination to send to (the node address of the sender node)
-const byte paytype = 0xAA;    // message is a normal one
-const byte acktype = 0xBB;    // message is an ack confirmation
-boolean correcto = false;     // mensaje recibido correcto o no
-byte msgtype = paytype;       // it can be normal or ack message
-String RSSI;                  // lora received signal level in dBm
-String Snr;                   // lora signal to noise ratio
+byte destination = 0x02;      // destination node
+const byte paytype = 0xAA;    // normal message
+const byte acktype = 0xBB;    // ack message
+boolean correcto = false;     // message validation flag
+byte msgtype = paytype;       // default type
+String RSSI;                  // signal strength
+String Snr;                   // signal-to-noise ratio
+unsigned long loopCounter = 0;// para depuración
+volatile int errorCode = 0;   // si el mensaje viene con errores, identificar el error
 
-int i = 0;                    //indice provisional para un for provisional
+int i = 0;                    // task index
 
 #define LED 2
 
-
-uint8_t checksum (String msg) {               //Checksum 8 bits complemento a 2
-
-uint8_t value = 0;                            //uint8-t equivalente a un byte, de 0 a 255
-for (size_t i = 0; i < msg.length(); i++) {   //size-t equivalente a unsigned long
-  value += msg[i];
-}                        
- return value;
+uint8_t checksum(String msg) {
+  uint8_t value = 0;
+  for (size_t i = 0; i < msg.length(); i++) {
+    value += msg[i];
+  }
+  return value;
 }
 
 void sendMessage() {
-  LoRa.beginPacket();                   // start packet
-  LoRa.write(destination);              // add destination address (the sender node)
-  LoRa.write(localAddress);             // add gateway address 
-  LoRa.write(msgID);                 // add message ID from the received msg
-  LoRa.write(msgtype);                     // add message type (data or ack)
-  LoRa.write(checksum(outgoing));       // add outgoing checksum               
-  LoRa.write(outgoing.length());        // add payload length
-  LoRa.print(outgoing);                 // add payload
-  LoRa.endPacket();                     // finish packet and send it
-
+  LoRa.beginPacket();
+  LoRa.write(destination);
+  LoRa.write(localAddress);
+  LoRa.write(msgID);
+  LoRa.write(msgtype);
+  LoRa.write(checksum(outgoing));
+  LoRa.write(outgoing.length());
+  LoRa.print(outgoing);
+  ESP_LOGD(TAG, "Enviando paquete LoRa a 0x%02X, tipo=0x%02X, ID=%d, payload='%s'", destination, msgtype, msgID, outgoing.c_str());
+  LoRa.endPacket();
 }
 
 void onReceive(int packetSize) {
-  if (packetSize == 0) return;          // if there's no packet, return
+  if (packetSize == 0) return;
 
-  // read packet header bytes:
-  byte recipient = LoRa.read();          // recipient address
-  byte sender = LoRa.read();            // sender address
-  byte incomingMsgId = LoRa.read();     // incoming msg ID
-  byte incomingtype = LoRa.read();      // message type (normal or ack)
-  byte check = LoRa.read();             // incoming msg checksum
-  byte incomingLength = LoRa.read();    // incoming msg length
+  byte recipient = LoRa.read();
+  byte sender = LoRa.read();
+  byte incomingMsgId = LoRa.read();
+  byte incomingtype = LoRa.read();
+  byte check = LoRa.read();
+  byte incomingLength = LoRa.read();
 
-  String incoming = "";                 // payload of packet
-
-  while (LoRa.available()) {            // can't use readString() in callback, so
-    incoming += (char)LoRa.read();      // add bytes one by one
+  String incoming = "";
+  while (LoRa.available()) {
+    incoming += (char)LoRa.read();
   }
 
-  // check message length. It must match for error, if no, discard message
-
-  if (incomingLength != incoming.length()) {   
-    Serial.println("error: message length does not match");
-    return;                             
+  if (incomingLength != incoming.length()) {
+    errorCode = 1;
+    return;
   }
-
-  // if the recipient isn't this device or broadcast, discard message
 
   if (recipient != localAddress && recipient != 0xFF) {
-    Serial.println("This message is not for me.");
-    return;                             
-  }
-  
-  //checksum must match. 
-
-  if (checksum(incoming) != check) {            
-    Serial.println("Checksum does not match");
-    return;                                      
+    errorCode = 2;
+    return;
   }
 
-  //at this point, the message is OK.
-  //Get ready to send an ack
+  if (checksum(incoming) != check) {
+    errorCode = 3;
+    return;
+  }
 
   int tareas[5] = {0,1,2,3,4};
-  
   if (i == 5) i = 0;
-  outgoing = tareas[i];
+  outgoing = String(tareas[i]);
   i++;
 
-  //if the incoming message is a payload, send an ack
-
   if (incomingtype == paytype) {
-
-    correcto = true;              //the incoming message is correct
-    destination = sender;         //send the ack to the current sender
-    msgID = incomingMsgId;        //the ID is the same
-    receivedMsg = incoming;       //get the message
-    msgtype = acktype;            //set the outgoing message as an ack
-
-  } else {                        //the msg is an ack. no need to send anything
-
-    //Serial.println("la instruccion se ha recibido correctamente");
-    //Serial.println();
-    //////////////////////////////////////////////////////////
-    // WHAT TO DO WHEN THE TASK IS CONFIRMED                //
-    //////////////////////////////////////////////////////////
-    
+    correcto = true;
+    destination = sender;
+    msgID = incomingMsgId;
+    receivedMsg = incoming;
+    msgtype = acktype;
+  } else {
+    ESP_LOGI(TAG, "Tarea confirmada por nodo");
   }
+
   RSSI = String(LoRa.packetRssi());
   Snr = String(LoRa.packetSnr());
-
 }
 
 void conectarWiFi() {
-
-  WiFi.begin(ssid,password);
-  Serial.println("Connecting wifi..");
-  while(WiFi.status() != WL_CONNECTED) {
+  WiFi.begin(ssid, password);
+  ESP_LOGI(TAG, "Conectando a WiFi...");
+  while (WiFi.status() != WL_CONNECTED) {
     delay(500);
-    Serial.print(".");
   }
-  Serial.println("\nWiFi conectado con IP: " + WiFi.localIP().toString());
+  ESP_LOGI(TAG, "WiFi conectado con IP: %s", WiFi.localIP().toString().c_str());
 }
 
 void conectarMQTT() {
   while (!client.connected()) {
-    Serial.print("Conectando a MQTT...");
+    ESP_LOGI(TAG, "Conectando a MQTT...");
     if (client.connect("ESP32_Gateway", mqtt_user, mqtt_password)) {
-      Serial.println("Conectado a MQTT");
+      ESP_LOGI(TAG, "Conectado a MQTT");
     } else {
-      Serial.print("Error conectando a MQTT, rc= ");
-      Serial.println(client.state());
+      ESP_LOGE(TAG, "Error conectando a MQTT, rc=%d", client.state());
       delay(5000);
     }
   }
@@ -173,46 +140,51 @@ void conectarMQTT() {
 void enviarDatosMQTT(String datos) {
   if (client.connected()) {
     client.publish(topic_data, datos.c_str());
-    //Serial.print("Enviando por MQTT, esperar confirmación: ");
-    //Serial.println(datos.c_str());
+    ESP_LOGI(TAG, "MQTT publicado: '%s' en topic '%s'", datos.c_str(), topic_data);
   }
 }
 
 void callbackMQTT(char* topic, byte* payload, unsigned int length) {
-  //Serial.print("Mensaje recibido en ");
-  //Serial.print(topic);
-  //Serial.print(": ");
+  ESP_LOGI(TAG, "Mensaje recibido en %s", topic);
   String mensaje = "";
-  for (int i=0; i<length; i++) {
+  for (int i = 0; i < length; i++) {
     mensaje += (char)payload[i];
   }
-  //Serial.println("Orden recibida: " + mensaje);
+  ESP_LOGI(TAG, "MQTT recibido en topic '%s': '%s'", topic, mensaje.c_str());
+
 }
 
-void setup() {                            //void = no se espera respuesta
-  Serial.begin(115200);                   // initialize serial
-  while (!Serial);
-
-  Serial.println("Ituero LoRa Duplex and MQTT with callback gateway v.01");
-
-  //rtc_wdt_protect_off();    //disable WDT lock problem, only if necessary. 
-  //rtc_wdt_disable();        //check program in advance.
-
-  pinMode(LED,OUTPUT);
-  digitalWrite(LED,LOW);
-
-  // override the default CS, reset, and IRQ pins (optional)
-  LoRa.setPins(csPin, resetPin, irqPin);// set CS, reset, IRQ pin
-
-  if (!LoRa.begin(868E6)) {             // initialize ratio at 868 MHz
-    Serial.println("LoRa init failed. Check your connections.");
-    while (true);                       // if failed, do nothing
+void checkConexiones() {
+  if (WiFi.status() != WL_CONNECTED) {
+    ESP_LOGW(TAG, "WiFi desconectada, reconectando...");
+    conectarWiFi();
   }
 
-  LoRa.setSyncWord(0x33); 
+  if (!client.connected()) {
+    ESP_LOGW(TAG, "MQTT desconectado, reconectando...");
+    conectarMQTT();
+  }
+}
+
+void setup() {
+  Serial.begin(115200);
+  esp_log_level_set("*", ESP_LOG_WARN);         // El resto del sistema solo advertencias y errores
+  esp_log_level_set(TAG, ESP_LOG_DEBUG);        // Tus logs en modo DEBUG
+  while (!Serial);
+  ESP_LOGI(TAG, "Ituero LoRa Gateway v0.1");
+
+  pinMode(LED, OUTPUT);
+  digitalWrite(LED, LOW);
+
+  LoRa.setPins(csPin, resetPin, irqPin);
+  if (!LoRa.begin(868E6)) {
+    ESP_LOGE(TAG, "Fallo al iniciar LoRa");
+    while (true);
+  }
+  LoRa.setSyncWord(0x33);
   LoRa.onReceive(onReceive);
   LoRa.receive();
-  Serial.println("LoRa init succeeded.");
+  ESP_LOGI(TAG, "LoRa iniciado correctamente");
 
   conectarWiFi();
   client.setServer(mqtt_server, mqtt_port);
@@ -220,34 +192,51 @@ void setup() {                            //void = no se espera respuesta
   client.setCallback(callbackMQTT);
   client.subscribe(topic_respuesta);
   client.subscribe(topic_actuadores);
-
 }
 
 void loop() {
-
   LoRa.receive();
   client.loop();
   delay(100);
-  if (correcto) {
-    //outgoing = "te envio el ack";
-    sendMessage();
-    correcto = false;
-    //Serial.println("enviando el ack y la tarea " + String(outgoing));
-    LoRa.receive();
-    digitalWrite(LED,HIGH);
-    delay (100);
-    digitalWrite(LED,LOW);
-    //parseMsg(receivedMsg);              //only for checking
-    receivedMsg += "," + String(RSSI) + "," + String(Snr);
-    Serial.println(receivedMsg);
-    enviarDatosMQTT(receivedMsg);
+
+
+  loopCounter++;
+  if (loopCounter % 1000 == 0) {
+    ESP_LOGI(TAG, "[CICLO %lu] Heap libre: %u, Min heap: %u, WiFi: %s, MQTT: %s",
+             loopCounter,
+             esp_get_free_heap_size(),
+             esp_get_minimum_free_heap_size(),
+             WiFi.status() == WL_CONNECTED ? "OK" : "DESCONECTADO",
+             client.connected() ? "CONECTADO" : "DESCONECTADO");
+    checkConexiones();
   }
 
-//////////////////////////////////////////
-//  MANAGE TASKS TO SEND                //
-//////////////////////////////////////////
+  if (correcto) {
+    sendMessage();
+    correcto = false;
+    ESP_LOGI(TAG, "Enviando ACK con tarea: %s", outgoing.c_str());
 
+    digitalWrite(LED, HIGH);
+    delay(100);
+    digitalWrite(LED, LOW);
 
+    receivedMsg += "," + String(RSSI) + "," + String(Snr);
+    ESP_LOGI(TAG, "Mensaje recibido: %s", receivedMsg.c_str());
+    enviarDatosMQTT(receivedMsg);
+    ESP_LOGI(TAG, "Heap libre: %u bytes", esp_get_free_heap_size());
+    ESP_LOGI(TAG, "Min heap histórico: %d bytes", esp_get_minimum_free_heap_size());
+
+    receivedMsg = ""; // Limpiar buffer
+  }
+
+  if (errorCode != 0) {
+    switch (errorCode) {
+      case 1: ESP_LOGW(TAG, "Mensaje descartado: longitudes no coinciden"); break;
+      case 2: ESP_LOGW(TAG, "Mensaje no dirigido a este nodo"); break;
+      case 3: ESP_LOGW(TAG, "Checksum incorrecto"); break;
+    }
+    errorCode = 0;
+  }
 }
 
 extern "C" void app_main() {
@@ -255,6 +244,6 @@ extern "C" void app_main() {
   setup();
   while (true) {
     loop();
-    delay(1);  // muy importante para evitar el watchdog
+    delay(1);
   }
 }

@@ -1,7 +1,7 @@
 {
     "version":            "1",
     "project_name":       "SCIGateway",
-    "project_version":    "1",
+    "project_version":    "1cb16c9-dirty",
     "project_path":       "C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway",
     "idf_path":           "C:/Users/Usuario/esp/esp-idf-v4.4.7",
     "build_dir":          "C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/build",
