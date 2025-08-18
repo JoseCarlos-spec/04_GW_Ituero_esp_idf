@@ -1,10 +1,14 @@
 #include <Arduino.h>
 #include <SPI.h>              // SPI : miso mosi communication
 #include <LoRa.h>             // wireless lora
+#include <DHT.h>              //DHT22 sensor
 #include <WiFi.h>           
 #include <WiFiClient.h>       //http protocol
 #include <HTTPClient.h>
 #include <PubSubClient.h>     //MQTT protocol
+
+#include <map>
+std::map<int, int> ordenesPendientes; // Mapa de órdenes {nodo_id: estado}
 
 #include "esp_log.h"
 static const char* TAG = "SCIGateway";
@@ -36,15 +40,33 @@ byte destination = 0x02;      // destination node
 const byte paytype = 0xAA;    // normal message
 const byte acktype = 0xBB;    // ack message
 boolean correcto = false;     // message validation flag
+boolean myturn = false;       // si ha enviado el nodo 2, me toca a mi nodo 1
 byte msgtype = paytype;       // default type
 String RSSI;                  // signal strength
 String Snr;                   // signal-to-noise ratio
 unsigned long loopCounter = 0;// para depuración
 volatile int errorCode = 0;   // si el mensaje viene con errores, identificar el error
 
-int i = 0;                    // task index
+//int i = 0;                    // task index
 
 #define LED 2
+#define DHTpin 15
+#define DHTTYPE DHT22
+DHT dht(DHTpin, DHTTYPE);
+
+float temp;
+float hum;
+
+// Función para procesar órdenes cuando un nodo se despierta
+int obtenerOrden(int nodo_id) {
+  if (ordenesPendientes.count(nodo_id)) {  // READ devuelve 1 si existe, 0 si no
+    int estado = ordenesPendientes[nodo_id];
+    ordenesPendientes.erase(nodo_id);   // DELETE
+    ESP_LOGI("STACK", "Orden enviada para nodo '%d': '%d'", nodo_id, estado);
+    return estado;
+    }
+  return -1; // No hay orden pendiente
+}
 
 uint8_t checksum(String msg) {
   uint8_t value = 0;
@@ -78,6 +100,7 @@ void onReceive(int packetSize) {
   byte incomingLength = LoRa.read();
 
   String incoming = "";
+
   while (LoRa.available()) {
     incoming += (char)LoRa.read();
   }
@@ -97,23 +120,43 @@ void onReceive(int packetSize) {
     return;
   }
 
+  //at this point, the message is OK.
+  //Check for pending orders for the sender node
+  //outgoing = -1 means no order
+
+  outgoing = obtenerOrden(sender);
+
+  /*
   int tareas[5] = {0,1,2,3,4};
   if (i == 5) i = 0;
   outgoing = String(tareas[i]);
   i++;
+  */
+
+  //if the incoming message is a payload, send an ack and the order
 
   if (incomingtype == paytype) {
-    correcto = true;
-    destination = sender;
-    msgID = incomingMsgId;
-    receivedMsg = incoming;
-    msgtype = acktype;
-  } else {
+
+    correcto = true;            //the incoming message is correct
+    destination = sender;       //send the ack to the current sender
+    msgID = incomingMsgId;      //the ID is the same
+    receivedMsg = incoming;     //get the message
+    msgtype = acktype;          //set the outgoing message as an ack
+
+  } else {                      //the msg is an ack. no need to send anything
+
     ESP_LOGI(TAG, "Tarea confirmada por nodo");
+
+    //////////////////////////////////////////////////////////
+    // WHAT TO DO WHEN THE TASK IS CONFIRMED                //
+    //////////////////////////////////////////////////////////
   }
 
   RSSI = String(LoRa.packetRssi());
   Snr = String(LoRa.packetSnr());
+
+  if (sender == 2) myturn = true;  //si ha enviado datos el nodo 2, me toca enviar a mí
+
 }
 
 void conectarWiFi() {
@@ -152,6 +195,22 @@ void callbackMQTT(char* topic, byte* payload, unsigned int length) {
   }
   ESP_LOGI(TAG, "MQTT recibido en topic '%s': '%s'", topic, mensaje.c_str());
 
+  // Parsear JSON manualmente (o usa ArduinoJson)
+  // el mensaje viene asi: {"nodo":3,"estado":0}
+
+  int nodo_id = -1;
+  int estado = -1;
+  ESP_LOGI(TAG, "Payload completo MQTT: '%s'", mensaje.c_str());
+  sscanf(mensaje.c_str(), "{\"nodo\":%d,\"estado\":%d}", &nodo_id, &estado);
+
+  ESP_LOGI(TAG, "NODO: '%d'", nodo_id);
+  ESP_LOGI(TAG, "ESTADP: '%d'", estado);
+
+
+  if (nodo_id != -1) {
+    ordenesPendientes[nodo_id] = estado; // CREATE / UPDATE (si ya existía)
+    ESP_LOGI("STACK", "Orden guardada en GW para nodo '%d': '%d'", nodo_id, estado);
+    }
 }
 
 void checkConexiones() {
@@ -171,10 +230,12 @@ void setup() {
   esp_log_level_set("*", ESP_LOG_WARN);         // El resto del sistema solo advertencias y errores
   esp_log_level_set(TAG, ESP_LOG_DEBUG);        // Tus logs en modo DEBUG
   while (!Serial);
-  ESP_LOGI(TAG, "Ituero LoRa Gateway v0.1");
+  ESP_LOGI(TAG, "Ituero LoRa Gateway Stack+DHT v0.1");
 
   pinMode(LED, OUTPUT);
   digitalWrite(LED, LOW);
+
+  dht.begin();
 
   LoRa.setPins(csPin, resetPin, irqPin);
   if (!LoRa.begin(868E6)) {
@@ -236,6 +297,17 @@ void loop() {
       case 3: ESP_LOGW(TAG, "Checksum incorrecto"); break;
     }
     errorCode = 0;
+  }
+
+  if (myturn) {
+    temp = dht.readTemperature();
+    hum = dht.readHumidity();
+    if (isnan(temp) || isnan(hum)) {
+      Serial.println(F("Failed to read from DHT sensor!"));
+    }
+    String mymsg = "1,0," + String(temp) + "," + String(hum) + ",0,0";
+    enviarDatosMQTT(mymsg);
+    myturn = false;
   }
 }
 

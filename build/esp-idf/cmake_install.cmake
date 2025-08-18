@@ -124,6 +124,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/build/esp-idf/arduino/cmake_install.cmake")
   include("C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/build/esp-idf/LoRa/cmake_install.cmake")
   include("C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/build/esp-idf/PubSubClient/cmake_install.cmake")
+  include("C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/build/esp-idf/DHT/cmake_install.cmake")
   include("C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/build/esp-idf/main/cmake_install.cmake")
 
 endif()
