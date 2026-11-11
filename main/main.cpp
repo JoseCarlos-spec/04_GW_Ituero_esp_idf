@@ -11,7 +11,45 @@
 std::map<int, int> ordenesPendientes; // Mapa de órdenes {nodo_id: estado}
 
 #include "esp_log.h"
+#include "esp_timer.h"
+#include "esp_system.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+
 static const char* TAG = "SCIGateway";
+
+//---------------------- Watchdog de aplicación ----------------------
+static volatile bool actividad_pendiente = false;    // se pone true desde callbacks/ISR
+static int64_t ultimo_evento_ms = 0;                 // actualizado en contexto seguro
+#define TIMEOUT_INACTIVIDAD_MS  120000               // 2 minutos
+
+static void marcar_actividad_now(void) {
+  ultimo_evento_ms = esp_timer_get_time() / 1000; // ms
+}
+
+static void watchdog_app_cb(void* /*arg*/) {
+  int64_t ahora_ms = esp_timer_get_time() / 1000;
+  int64_t inactivo_ms = ahora_ms - ultimo_evento_ms;
+  if (inactivo_ms > TIMEOUT_INACTIVIDAD_MS) {
+    ESP_LOGE("WATCHDOG", "Inactividad detectada (%lld ms). Reiniciando...", inactivo_ms);
+    esp_restart();
+  }
+}
+
+static void iniciar_watchdog_app(void) {
+  marcar_actividad_now();
+  const esp_timer_create_args_t timer_args = {
+    .callback = &watchdog_app_cb,
+    .arg = nullptr,
+    .dispatch_method = ESP_TIMER_TASK,
+    .name = "app_watchdog",
+    .skip_unhandled_events = false
+  };
+  static esp_timer_handle_t timer_handle;
+  ESP_ERROR_CHECK(esp_timer_create(&timer_args, &timer_handle));
+  ESP_ERROR_CHECK(esp_timer_start_periodic(timer_handle, 30000000)); // 30 s
+}
+//-------------------------------------------------------------------
 
 //wifi credentials
 const char* ssid = "DIGIFIBRA-fAUx";
@@ -21,7 +59,7 @@ const char* mqtt_server = "13.37.77.172";    //AWS lightsail server
 const int mqtt_port = 1883;
 const char* mqtt_user = "usuario";
 const char* mqtt_password = "clave";
-const char* topic_data = "nodo/datos";
+const char* topic_data = "gateway/data";  //antes nodo/datos
 const char* topic_actuadores = "nodo/actuadores";
 const char* topic_respuesta = "nodo/respuesta";
 
@@ -46,6 +84,7 @@ String RSSI;                  // signal strength
 String Snr;                   // signal-to-noise ratio
 unsigned long loopCounter = 0;// para depuración
 volatile int errorCode = 0;   // si el mensaje viene con errores, identificar el error
+boolean nodeConfirmation = false;
 
 //int i = 0;                    // task index
 
@@ -145,7 +184,7 @@ void onReceive(int packetSize) {
 
   } else {                      //the msg is an ack. no need to send anything
 
-    ESP_LOGI(TAG, "Tarea confirmada por nodo");
+    nodeConfirmation = true;
 
     //////////////////////////////////////////////////////////
     // WHAT TO DO WHEN THE TASK IS CONFIRMED                //
@@ -157,37 +196,56 @@ void onReceive(int packetSize) {
 
   if (sender == 2) myturn = true;  //si ha enviado datos el nodo 2, me toca enviar a mí
 
+  actividad_pendiente = true;
+
 }
 
 void conectarWiFi() {
+  WiFi.setSleep(false);
   WiFi.begin(ssid, password);
   ESP_LOGI(TAG, "Conectando a WiFi...");
+  uint32_t start = millis();
   while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
+    delay(250);
+    if (millis() - start > 20000) { // 20 s timeout
+      ESP_LOGW(TAG, "WiFi timeout, reintentando...");
+      start = millis();
+      WiFi.disconnect();
+      WiFi.begin(ssid, password);
+    }
   }
   ESP_LOGI(TAG, "WiFi conectado con IP: %s", WiFi.localIP().toString().c_str());
+  marcar_actividad_now();
 }
 
 void conectarMQTT() {
+  client.setKeepAlive(30);     // segundos
+  client.setSocketTimeout(10); // segundos
   while (!client.connected()) {
     ESP_LOGI(TAG, "Conectando a MQTT...");
     if (client.connect("ESP32_Gateway", mqtt_user, mqtt_password)) {
       ESP_LOGI(TAG, "Conectado a MQTT");
+      marcar_actividad_now();
     } else {
       ESP_LOGE(TAG, "Error conectando a MQTT, rc=%d", client.state());
-      delay(5000);
+      delay(3000);
     }
   }
 }
 
 void enviarDatosMQTT(String datos) {
   if (client.connected()) {
-    client.publish(topic_data, datos.c_str());
-    ESP_LOGI(TAG, "MQTT publicado: '%s' en topic '%s'", datos.c_str(), topic_data);
+    if (client.publish(topic_data, datos.c_str())) {
+      ESP_LOGI(TAG, "MQTT publicado: '%s' en topic '%s'", datos.c_str(), topic_data);
+      marcar_actividad_now();
+    } else {
+      ESP_LOGW(TAG, "Fallo publish MQTT (topic '%s')", topic_data);
+    }
   }
 }
 
 void callbackMQTT(char* topic, byte* payload, unsigned int length) {
+  marcar_actividad_now();
   ESP_LOGI(TAG, "Mensaje recibido en %s", topic);
   String mensaje = "";
   for (int i = 0; i < length; i++) {
@@ -203,8 +261,8 @@ void callbackMQTT(char* topic, byte* payload, unsigned int length) {
   ESP_LOGI(TAG, "Payload completo MQTT: '%s'", mensaje.c_str());
   sscanf(mensaje.c_str(), "{\"nodo\":%d,\"estado\":%d}", &nodo_id, &estado);
 
-  ESP_LOGI(TAG, "NODO: '%d'", nodo_id);
-  ESP_LOGI(TAG, "ESTADP: '%d'", estado);
+  ESP_LOGI("STACK", "NODO: '%d'", nodo_id);
+  ESP_LOGI("STACK", "ESTADP: '%d'", estado);
 
 
   if (nodo_id != -1) {
@@ -253,9 +311,17 @@ void setup() {
   client.setCallback(callbackMQTT);
   client.subscribe(topic_respuesta);
   client.subscribe(topic_actuadores);
+
+  iniciar_watchdog_app();
 }
 
 void loop() {
+
+  if (actividad_pendiente) {
+    actividad_pendiente = false;
+    marcar_actividad_now();
+  }
+
   LoRa.receive();
   client.loop();
   delay(100);
@@ -290,6 +356,11 @@ void loop() {
     receivedMsg = ""; // Limpiar buffer
   }
 
+  if (nodeConfirmation) {
+    nodeConfirmation = false;
+    ESP_LOGI(TAG, "El nodo ha confirmado la tarea");
+  }
+
   if (errorCode != 0) {
     switch (errorCode) {
       case 1: ESP_LOGW(TAG, "Mensaje descartado: longitudes no coinciden"); break;
@@ -303,10 +374,11 @@ void loop() {
     temp = dht.readTemperature();
     hum = dht.readHumidity();
     if (isnan(temp) || isnan(hum)) {
-      Serial.println(F("Failed to read from DHT sensor!"));
-    }
+      ESP_LOGW("DHT", "Failed reading from DHT sensor!");
+    } else {
     String mymsg = "1,0," + String(temp) + "," + String(hum) + ",0,0";
     enviarDatosMQTT(mymsg);
+    }
     myturn = false;
   }
 }
@@ -319,3 +391,5 @@ extern "C" void app_main() {
     delay(1);
   }
 }
+
+
