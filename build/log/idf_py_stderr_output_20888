@@ -1,0 +1,116 @@
+[0;33m--- esp-idf-monitor 1.6.2 on com3 115200[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H[0m
+[0;33m--- 0x40080400: _init at ??:?
+[0m
+[0;33m--- 0x4008135c: call_start_cpu1 at C:/Users/Usuario/esp/esp-idf-v4.4.7/components/esp_system/port/cpu_start.c:151
+[0m
+[0;33m--- 0x40080000: _WindowOverflow4 at C:/Users/Usuario/esp/esp-idf-v4.4.7/components/freertos/port/xtensa/xtensa_vectors.S:1743
+[0m
+[0;33m--- 0x40080000: _WindowOverflow4 at C:/Users/Usuario/esp/esp-idf-v4.4.7/components/freertos/port/xtensa/xtensa_vectors.S:1743
+[0m
+[0;33m--- 0x40000000: _WindowOverflow4 in ROM
+[0m
+[0;33m--- 0x40143768: _GLOBAL__sub_I___cxa_get_globals_fast at /builds/idf/crosstool-NG/.build/HOST-x86_64-w64-mingw32/xtensa-esp32-elf/src/gcc/libstdc++-v3/libsupc++/eh_globals.cc:145
+[0m
+[0;33m--- 0x4014368c: _GLOBAL__sub_I__ZN9__gnu_cxx9__freeresEv at /builds/idf/crosstool-NG/.build/HOST-x86_64-w64-mingw32/xtensa-esp32-elf/src/gcc/libstdc++-v3/libsupc++/eh_alloc.cc:348
+[0m
+[0;33m--- 0x400f0fa4: s_set_default_wifi_log_level at C:/Users/Usuario/esp/esp-idf-v4.4.7/components/esp_wifi/src/wifi_init.c:65
+[0m
+[0;33m--- 0x400e0fa8: esp_ipc_init at C:/Users/Usuario/esp/esp-idf-v4.4.7/components/esp_ipc/src/esp_ipc.c:105
+[0m
+[0;33m--- 0x400ded78: _GLOBAL__sub_I_ARDUINO_EVENTS at C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/components/arduino/libraries/WiFi/src/WiFiGeneric.cpp:1523
+[0m
+[0;33m--- 0x400dd4e4: _GLOBAL__sub_I__ZN9WiFiClass9printDiagER5Print at C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/components/arduino/libraries/WiFi/src/WiFi.cpp:101
+[0m
+[0;33m--- 0x400dc620: _GLOBAL__sub_I__ZN8SPIClassC2Eh at C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/components/arduino/libraries/SPI/src/SPI.cpp:347
+[0m
+[0;33m--- 0x400dc3a0: _GLOBAL__sub_I__ZN6StringC2EPKc at C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/components/arduino/cores/esp32/WString.cpp:918
+[0m
+[0;33m--- 0x400dbb28: _GLOBAL__sub_I__ZN9IPAddressC2Ev at C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/components/arduino/cores/esp32/IPAddress.cpp:125
+[0m
+[0;33m--- 0x400dba44: _GLOBAL__sub_I_Serial at C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/components/arduino/cores/esp32/HardwareSerial.cpp:605
+[0m
+[0;33m--- 0x400d9550: _GLOBAL__sub_I__ZN9LoRaClassC2Ev at C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/components/LoRa/LoRa.cpp:754
+[0m
+[0;33m--- 0x400d8f54: _GLOBAL__sub_I_preferences at C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/main/main.cpp:1273
+[0m
+[0;33m--- 0x400d34b0: esp_reset_reason_init at C:/Users/Usuario/esp/esp-idf-v4.4.7/components/esp_system/port/soc/esp32/reset_reason.c:68
+[0m
+[0;33m--- 0x400d2728: esp_ota_init_app_elf_sha256 at C:/Users/Usuario/esp/esp-idf-v4.4.7/components/app_update/esp_app_desc.c:68
+[0m
+[1;31m--- Error: ClearCommError failed (PermissionError(13, 'Acceso denegado.', None, 5))[0m
+[0;33m--- Waiting for the device to reconnect[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m[0m
+[0;33m--- 0x4008135c: call_start_cpu1 at C:/Users/Usuario/esp/esp-idf-v4.4.7/components/esp_system/port/cpu_start.c:151
+[0m
+[0;33m--- 0x40080000: _WindowOverflow4 at C:/Users/Usuario/esp/esp-idf-v4.4.7/components/freertos/port/xtensa/xtensa_vectors.S:1743
+[0m
+[0;33m--- 0x40080000: _WindowOverflow4 at C:/Users/Usuario/esp/esp-idf-v4.4.7/components/freertos/port/xtensa/xtensa_vectors.S:1743
+[0m
+[0;33m--- 0x40000000: _WindowOverflow4 in ROM
+[0m
+[0;33m--- 0x40143768: _GLOBAL__sub_I___cxa_get_globals_fast at /builds/idf/crosstool-NG/.build/HOST-x86_64-w64-mingw32/xtensa-esp32-elf/src/gcc/libstdc++-v3/libsupc++/eh_globals.cc:145
+[0m
+[0;33m--- 0x4014368c: _GLOBAL__sub_I__ZN9__gnu_cxx9__freeresEv at /builds/idf/crosstool-NG/.build/HOST-x86_64-w64-mingw32/xtensa-esp32-elf/src/gcc/libstdc++-v3/libsupc++/eh_alloc.cc:348
+[0m
+[0;33m--- 0x400f0fa4: s_set_default_wifi_log_level at C:/Users/Usuario/esp/esp-idf-v4.4.7/components/esp_wifi/src/wifi_init.c:65
+[0m
+[0;33m--- 0x400e0fa8: esp_ipc_init at C:/Users/Usuario/esp/esp-idf-v4.4.7/components/esp_ipc/src/esp_ipc.c:105
+[0m
+[0;33m--- 0x400ded78: _GLOBAL__sub_I_ARDUINO_EVENTS at C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/components/arduino/libraries/WiFi/src/WiFiGeneric.cpp:1523
+[0m
+[0;33m--- 0x400dd4e4: _GLOBAL__sub_I__ZN9WiFiClass9printDiagER5Print at C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/components/arduino/libraries/WiFi/src/WiFi.cpp:101
+[0m
+[0;33m--- 0x400dc620: _GLOBAL__sub_I__ZN8SPIClassC2Eh at C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/components/arduino/libraries/SPI/src/SPI.cpp:347
+[0m
+[0;33m--- 0x400dc3a0: _GLOBAL__sub_I__ZN6StringC2EPKc at C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/components/arduino/cores/esp32/WString.cpp:918
+[0m
+[0;33m--- 0x400dbb28: _GLOBAL__sub_I__ZN9IPAddressC2Ev at C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/components/arduino/cores/esp32/IPAddress.cpp:125
+[0m
+[0;33m--- 0x400dba44: _GLOBAL__sub_I_Serial at C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/components/arduino/cores/esp32/HardwareSerial.cpp:605
+[0m
+[0;33m--- 0x400d9550: _GLOBAL__sub_I__ZN9LoRaClassC2Ev at C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/components/LoRa/LoRa.cpp:754
+[0m
+[0;33m--- 0x400d8f54: _GLOBAL__sub_I_preferences at C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/main/main.cpp:1273
+[0m
+[0;33m--- 0x400d34b0: esp_reset_reason_init at C:/Users/Usuario/esp/esp-idf-v4.4.7/components/esp_system/port/soc/esp32/reset_reason.c:68
+[0m
+[0;33m--- 0x400d2728: esp_ota_init_app_elf_sha256 at C:/Users/Usuario/esp/esp-idf-v4.4.7/components/app_update/esp_app_desc.c:68
+[0m
+[1;31m--- Error: ClearCommError failed (PermissionError(13, 'Acceso denegado.', None, 5))[0m
+[0;33m--- Waiting for the device to reconnect[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m.[0m[0;33m[0m
+[0;33m--- 0x4008135c: call_start_cpu1 at C:/Users/Usuario/esp/esp-idf-v4.4.7/components/esp_system/port/cpu_start.c:151
+[0m
+[0;33m--- 0x40080000: _WindowOverflow4 at C:/Users/Usuario/esp/esp-idf-v4.4.7/components/freertos/port/xtensa/xtensa_vectors.S:1743
+[0m
+[0;33m--- 0x40080000: _WindowOverflow4 at C:/Users/Usuario/esp/esp-idf-v4.4.7/components/freertos/port/xtensa/xtensa_vectors.S:1743
+[0m
+[0;33m--- 0x40000000: _WindowOverflow4 in ROM
+[0m
+[0;33m--- 0x40143768: _GLOBAL__sub_I___cxa_get_globals_fast at /builds/idf/crosstool-NG/.build/HOST-x86_64-w64-mingw32/xtensa-esp32-elf/src/gcc/libstdc++-v3/libsupc++/eh_globals.cc:145
+[0m
+[0;33m--- 0x4014368c: _GLOBAL__sub_I__ZN9__gnu_cxx9__freeresEv at /builds/idf/crosstool-NG/.build/HOST-x86_64-w64-mingw32/xtensa-esp32-elf/src/gcc/libstdc++-v3/libsupc++/eh_alloc.cc:348
+[0m
+[0;33m--- 0x400f0fa4: s_set_default_wifi_log_level at C:/Users/Usuario/esp/esp-idf-v4.4.7/components/esp_wifi/src/wifi_init.c:65
+[0m
+[0;33m--- 0x400e0fa8: esp_ipc_init at C:/Users/Usuario/esp/esp-idf-v4.4.7/components/esp_ipc/src/esp_ipc.c:105
+[0m
+[0;33m--- 0x400ded78: _GLOBAL__sub_I_ARDUINO_EVENTS at C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/components/arduino/libraries/WiFi/src/WiFiGeneric.cpp:1523
+[0m
+[0;33m--- 0x400dd4e4: _GLOBAL__sub_I__ZN9WiFiClass9printDiagER5Print at C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/components/arduino/libraries/WiFi/src/WiFi.cpp:101
+[0m
+[0;33m--- 0x400dc620: _GLOBAL__sub_I__ZN8SPIClassC2Eh at C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/components/arduino/libraries/SPI/src/SPI.cpp:347
+[0m
+[0;33m--- 0x400dc3a0: _GLOBAL__sub_I__ZN6StringC2EPKc at C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/components/arduino/cores/esp32/WString.cpp:918
+[0m
+[0;33m--- 0x400dbb28: _GLOBAL__sub_I__ZN9IPAddressC2Ev at C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/components/arduino/cores/esp32/IPAddress.cpp:125
+[0m
+[0;33m--- 0x400dba44: _GLOBAL__sub_I_Serial at C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/components/arduino/cores/esp32/HardwareSerial.cpp:605
+[0m
+[0;33m--- 0x400d9550: _GLOBAL__sub_I__ZN9LoRaClassC2Ev at C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/components/LoRa/LoRa.cpp:754
+[0m
+[0;33m--- 0x400d8f54: _GLOBAL__sub_I_preferences at C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/main/main.cpp:1273
+[0m
+[0;33m--- 0x400d34b0: esp_reset_reason_init at C:/Users/Usuario/esp/esp-idf-v4.4.7/components/esp_system/port/soc/esp32/reset_reason.c:68
+[0m
+[0;33m--- 0x400d2728: esp_ota_init_app_elf_sha256 at C:/Users/Usuario/esp/esp-idf-v4.4.7/components/app_update/esp_app_desc.c:68
+[0m

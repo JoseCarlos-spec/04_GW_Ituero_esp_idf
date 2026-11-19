@@ -1,0 +1,1 @@
+could not open port 'com5': FileNotFoundError(2, 'El sistema no puede encontrar el archivo especificado.', None, 2)

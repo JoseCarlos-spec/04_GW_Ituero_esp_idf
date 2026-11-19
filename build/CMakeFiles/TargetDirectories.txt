@@ -697,6 +697,13 @@ C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/build/esp-idf/DHT/CMake
 C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/build/esp-idf/DHT/CMakeFiles/install.dir
 C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/build/esp-idf/DHT/CMakeFiles/install/local.dir
 C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/build/esp-idf/DHT/CMakeFiles/install/strip.dir
+C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/build/esp-idf/Preferences/CMakeFiles/__idf_Preferences.dir
+C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/build/esp-idf/Preferences/CMakeFiles/edit_cache.dir
+C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/build/esp-idf/Preferences/CMakeFiles/rebuild_cache.dir
+C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/build/esp-idf/Preferences/CMakeFiles/list_install_components.dir
+C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/build/esp-idf/Preferences/CMakeFiles/install.dir
+C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/build/esp-idf/Preferences/CMakeFiles/install/local.dir
+C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/build/esp-idf/Preferences/CMakeFiles/install/strip.dir
 C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/build/esp-idf/main/CMakeFiles/__idf_main.dir
 C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/build/esp-idf/main/CMakeFiles/edit_cache.dir
 C:/Users/Usuario/Documents/esp-idf/SCIGateway/SCIGateway/build/esp-idf/main/CMakeFiles/rebuild_cache.dir

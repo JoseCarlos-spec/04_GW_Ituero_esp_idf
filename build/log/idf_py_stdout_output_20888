@@ -1,0 +1,684 @@
+m�m
+[0;32mI (36) boot.esp32: SPI Spe�ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:6652
+ho 0 tail 12 room 4
+load:0x40078000,len:15052
+load:0x40080400,len:3836
+entry 0x4008069c
+[0;32mI (29) boot: ESP-IDF v4.4.7 2nd stage bootloader[0m
+[0;32mI (29) boot: compile time 19:12:43[0m
+[0;32mI (29) boot: Multicore bootloader[0m
+[0;32mI (32) boot: chip revision: v3.0[0m
+[0;32mI (36) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (41) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (45) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (50) boot: Enabling RNG early entropy source...[0m
+[0;32mI (55) boot: Partition Table:[0m
+[0;32mI (59) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (66) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (74) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (81) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (89) boot: End of partition table[0m
+[0;32mI (93) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=1f11ch (127260) map[0m
+[0;32mI (147) esp_image: segment 1: paddr=0002f144 vaddr=3ffb0000 size=00ed4h (  3796) load[0m
+[0;32mI (149) esp_image: segment 2: paddr=00030020 vaddr=400d0020 size=8d414h (578580) map[0m
+[0;32mI (362) esp_image: segment 3: paddr=000bd43c vaddr=3ffb0ed4 size=026a8h (  9896) load[0m
+[0;32mI (367) esp_image: segment 4: paddr=000bfaec vaddr=40080000 size=16000h ( 90112) load[0m
+[0;32mI (416) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (416) boot: Disabling RNG early entropy source...[0m
+[0;32mI (427) cpu_start: Multicore app[0m
+[0;32mI (428) cpu_start: Pro cpu up.[0m
+D (428) efuse: In EFUSE_BLK0__DATA3_REG is used 3 bits starting with 9 bit[0m
+D (431) efuse: In EFUSE_BLK0__DATA3_REG is used 1 bits starting with 2 bit[0m
+[0;32mI (438) cpu_start: Starting app cpu, entry point is 0x4008135c[0m
+[0;32mI (0) cpu_start: App cpu up.[0m
+D (452) clk: RTC_SLOW_CLK calibration value: 3296461[0m
+[0;32mI (465) cpu_start: Pro cpu start user code[0m
+[0;32mI (465) cpu_start: cpu freq: 160000000[0m
+[0;32mI (465) cpu_start: Application information:[0m
+[0;32mI (469) cpu_start: Project name:     SCIGateway[0m
+[0;32mI (474) cpu_start: App version:      5937df0-dirty[0m
+[0;32mI (480) cpu_start: Compile time:     Nov 12 2026 11:59:43[0m
+[0;32mI (486) cpu_start: ELF file SHA256:  d9f70202a4ea5ef7...[0m
+[0;32mI (492) cpu_start: ESP-IDF:          v4.4.7[0m
+[0;32mI (497) cpu_start: Min chip rev:     v0.0[0m
+[0;32mI (502) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (506) cpu_start: Chip rev:         v3.0[0m
+D (511) memory_layout: Checking 7 reserved memory ranges:[0m
+D (517) memory_layout: Reserved memory range 0x3ffae000 - 0x3ffae6e0[0m
+D (523) memory_layout: Reserved memory range 0x3ffb0000 - 0x3ffb7c20[0m
+D (529) memory_layout: Reserved memory range 0x3ffe0000 - 0x3ffe0440[0m
+D (536) memory_layout: Reserved memory range 0x3ffe3f20 - 0x3ffe4350[0m
+D (542) memory_layout: Reserved memory range 0x40070000 - 0x40078000[0m
+D (549) memory_layout: Reserved memory range 0x40078000 - 0x40080000[0m
+D (555) memory_layout: Reserved memory range 0x40080000 - 0x40096000[0m
+D (562) memory_layout: Building list of available memory regions:[0m
+D (568) memory_layout: Available memory region 0x3ffae6e0 - 0x3ffb0000[0m
+D (574) memory_layout: Available memory region 0x3ffb7c20 - 0x3ffb8000[0m
+D (581) memory_layout: Available memory region 0x3ffb8000 - 0x3ffc0000[0m
+D (587) memory_layout: Available memory region 0x3ffc0000 - 0x3ffc2000[0m
+D (594) memory_layout: Available memory region 0x3ffc2000 - 0x3ffc4000[0m
+D (601) memory_layout: Available memory region 0x3ffc4000 - 0x3ffc6000[0m
+D (607) memory_layout: Available memory region 0x3ffc6000 - 0x3ffc8000[0m
+D (614) memory_layout: Available memory region 0x3ffc8000 - 0x3ffca000[0m
+D (620) memory_layout: Available memory region 0x3ffca000 - 0x3ffcc000[0m
+D (627) memory_layout: Available memory region 0x3ffcc000 - 0x3ffce000[0m
+D (634) memory_layout: Available memory region 0x3ffce000 - 0x3ffd0000[0m
+D (640) memory_layout: Available memory region 0x3ffd0000 - 0x3ffd2000[0m
+D (647) memory_layout: Available memory region 0x3ffd2000 - 0x3ffd4000[0m
+D (653) memory_layout: Available memory region 0x3ffd4000 - 0x3ffd6000[0m
+D (660) memory_layout: Available memory region 0x3ffd6000 - 0x3ffd8000[0m
+D (667) memory_layout: Available memory region 0x3ffd8000 - 0x3ffda000[0m
+D (673) memory_layout: Available memory region 0x3ffda000 - 0x3ffdc000[0m
+D (680) memory_layout: Available memory region 0x3ffdc000 - 0x3ffde000[0m
+D (686) memory_layout: Available memory region 0x3ffde000 - 0x3ffe0000[0m
+D (693) memory_layout: Available memory region 0x3ffe0440 - 0x3ffe3f20[0m
+D (700) memory_layout: Available memory region 0x3ffe4350 - 0x3ffe8000[0m
+D (706) memory_layout: Available memory region 0x3ffe8000 - 0x3fff0000[0m
+D (713) memory_layout: Available memory region 0x3fff0000 - 0x3fff8000[0m
+D (719) memory_layout: Available memory region 0x3fff8000 - 0x3fffc000[0m
+D (726) memory_layout: Available memory region 0x3fffc000 - 0x40000000[0m
+D (733) memory_layout: Available memory region 0x40096000 - 0x40098000[0m
+D (739) memory_layout: Available memory region 0x40098000 - 0x4009a000[0m
+D (746) memory_layout: Available memory region 0x4009a000 - 0x4009c000[0m
+D (752) memory_layout: Available memory region 0x4009c000 - 0x4009e000[0m
+D (759) memory_layout: Available memory region 0x4009e000 - 0x400a0000[0m
+[0;32mI (766) heap_init: Initializing. RAM available for dynamic allocation:[0m
+D (773) heap_init: New heap initialised at 0x3ffae6e0[0m
+[0;32mI (778) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+D (784) heap_init: New heap initialised at 0x3ffb7c20[0m
+[0;32mI (789) heap_init: At 3FFB7C20 len 000283E0 (160 KiB): DRAM[0m
+[0;32mI (795) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (802) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+D (808) heap_init: New heap initialised at 0x40096000[0m
+[0;32mI (813) heap_init: At 40096000 len 0000A000 (40 KiB): IRAM[0m
+D (820) intr_alloc: Connected src 46 to int 2 (cpu 0)[0m
+D (825) FLASH_HAL: extra_dummy: 1[0m
+D (828) spi_flash: trying chip: issi[0m
+D (832) spi_flash: trying chip: gd[0m
+D (835) spi_flash: trying chip: mxic[0m
+D (839) spi_flash: trying chip: winbond[0m
+D (843) spi_flash: trying chip: generic[0m
+[0;32mI (847) spi_flash: detected chip: generic[0m
+[0;32mI (851) spi_flash: flash io: dio[0m
+[0;33mW (855) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+D (868) cpu_start: calling init function: 0x40143768[0m
+D (873) cpu_start: calling init function: 0x4014368c[0m
+D (878) cpu_start: calling init function: 0x400f0fa4[0m
+D (883) cpu_start: calling init function: 0x400e0fa8[0m
+D (889) cpu_start: calling init function: 0x400ded78[0m
+D (893) cpu_start: calling init function: 0x400dd4e4[0m
+D (898) cpu_start: calling init function: 0x400dc620[0m
+D (903) cpu_start: calling init function: 0x400dc3a0[0m
+D (909) cpu_start: calling init function: 0x400dbb28[0m
+D (914) cpu_start: calling init function: 0x400dba44[0m
+D (919) cpu_start: calling init function: 0x400d9550[0m
+D (924) cpu_start: calling init function: 0x400d8f54[0m
+D (929) cpu_start: calling init function: 0x400d34b0[0m
+D (934) cpu_start: calling init function: 0x400d2728[0m
+D (939) intr_alloc: Connected src 17 to int 3 (cpu 0)[0m
+D (944) intr_alloc: Connected src 24 to int 9 (cpu 0)[0m
+[0;32mI (949) cpu_start: Starting scheduler on PRO CPU.[0m
+D (0) intr_alloc: Connected src 25 to int 2 (cpu 1)[0m
+[0;32mI (4) cpu_start: Starting scheduler on APP CPU.[0m
+D (975) heap_init: New heap initialised at 0x3ffe0440[0m
+D (980) heap_init: New heap initialised at 0x3ffe4350[0m
+D (985) intr_alloc: Connected src 16 to int 12 (cpu 0)[0m
+D (990) partition: Loading the partition table[0m
+D (995) partition: Partition table MD5 verified[0m
+[0;32mI (10[0;32mI (2032) SCIGateway: GLOBALIoT - Gateway LoRa v1.0 Multi-Gateway Fase 2[0m
+[0;32mI (2034) SCIGateway: MQTT Client ID: GlobalIoT_GW0001[0m
+[0;32mI (2035) SCIGateway: Topic DATA: gateway/GW0001/data[0m
+[0;32mI (2039) SCIGateway: Topic ACTUADORES: gateway/GW0001/actuadores[0m
+[0;32mI (2046) SCIGateway: Topic RESPUESTA: gateway/GW0001/respuesta[0m
+[0;32mI (2053) SCIGateway: Identidad del gateway: GW0001[0m
+[0;32mI (2058) SCIGateway: Siguiente COMMAND_ID de prueba: 2971[0m
+[0;32mI (2085) SCIGateway: LoRa iniciado. SyncWord=0x33[0m
+[0;32mI (2198) SCIGateway: Conectando a WiFi...[0m
+[0;32mI (5449) SCIGateway: WiFi conectado con IP: 192.168.1.132[0m
+[0;32mI (5450) SCIGateway: Conectando a MQTT como GlobalIoT_GW0001...[0m
+[0;32mI (5513) SCIGateway: Conectado a MQTT.[0m
+[0;32mI (5518) SCIGateway: Suscrito a: gateway/GW0001/actuadores[0m
+[0;32mI (5519) SCIGateway: Gateway GW0001 preparado.[0m
+[0;32mI (16508) SCIGateway: [CICLO 1000] Heap libre: 231548, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (27509) SCIGateway: [CICLO 2000] Heap libre: 231548, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (38514) SCIGateway: [CICLO 3000] Heap libre: 231548, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (49515) SCIGateway: [CICLO 4000] Heap libre: 231548, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (53212) SCIGateway: DATA recibido: nodo=4 MSG_ID=160[0m
+[0;32mI (53213) SCIGateway: Payload: 19.60,56.60[0m
+[0;32mI (53213) SCIGateway: RSSI: -46 dBm, SNR: 9.50 dB[0m
+[0;32mI (53222) SCIGateway: MQTT publicado: '4,19.60,56.60' en 'gateway/GW0001/data'[0m
+[0;32mI (53263) SCIGateway: ACK_DATA enviado a nodo 4, MSG_ID=160, payload=0 bytes[0m
+[0;32mI (53263) SCIGateway: DATA procesado y confirmado: nodo=4 MSG_ID=160[0m
+[0;32mI (60571) SCIGateway: [CICLO 5000] Heap libre: 230736, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (71574) SCIGateway: [CICLO 6000] Heap libre: 230736, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (82575) SCIGateway: [CICLO 7000] Heap libre: 230736, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (93575) SCIGateway: [CICLO 8000] Heap libre: 230736, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (104578) SCIGateway: [CICLO 9000] Heap libre: 230736, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (114117) SCIGateway: DATA recibido: nodo=4 MSG_ID=161[0m
+[0;32mI (114118) SCIGateway: Payload: 19.60,56.70[0m
+[0;32mI (114118) SCIGateway: RSSI: -46 dBm, SNR: 9.75 dB[0m
+[0;32mI (114127) SCIGateway: MQTT publicado: '4,19.60,56.70' en 'gateway/GW0001/data'[0m
+[0;32mI (114134) SCIGateway: Orden de prueba: COMMAND_ID=2971 ACTION=0x01 ACTUADOR=1[0m
+[0;32mI (114191) SCIGateway: ACK_DATA enviado a nodo 4, MSG_ID=161, payload=8 bytes[0m
+[0;32mI (114192) SCIGateway: DATA procesado y confirmado: nodo=4 MSG_ID=161[0m
+[0;32mI (114296) SCIGateway: RESULT recibido: nodo=4 MSG_ID=162 COMMAND_ID=2971[0m
+[0;32mI (114296) SCIGateway: STATUS=1 ERROR_CODE=0[0m
+[0;32mI (114297) SCIGateway: La orden 2971 ha finalizado correctamente.[0m
+[0;32mI (114341) SCIGateway: ACK_RESULT enviado a nodo 4, MSG_ID=162[0m
+[0;32mI (115705) SCIGateway: [CICLO 10000] Heap libre: 230232, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (126710) SCIGateway: [CICLO 11000] Heap libre: 230232, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (137711) SCIGateway: [CICLO 12000] Heap libre: 230232, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (148711) SCIGateway: [CICLO 13000] Heap libre: 230232, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (159715) SCIGateway: [CICLO 14000] Heap libre: 230232, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (170716) SCIGateway: [CICLO 15000] Heap libre: 230232, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (175139) SCIGateway: DATA recibido: nodo=4 MSG_ID=163[0m
+[0;32mI (175140) SCIGateway: Payload: 19.60,56.80[0m
+[0;32mI (175140) SCIGateway: RSSI: -46 dBm, SNR: 9.75 dB[0m
+[0;32mI (175148) SCIGateway: MQTT publicado: '4,19.60,56.80' en 'gateway/GW0001/data'[0m
+[0;32mI (175156) SCIGateway: Orden de prueba: COMMAND_ID=2972 ACTION=0x01 ACTUADOR=1[0m
+[0;32mI (175162) SCIGateway: Orden de prueba: COMMAND_ID=2973 ACTION=0x02 ACTUADOR=2[0m
+[0;32mI (175232) SCIGateway: ACK_DATA enviado a nodo 4, MSG_ID=163, payload=15 bytes[0m
+[0;32mI (175232) SCIGateway: DATA procesado y confirmado: nodo=4 MSG_ID=163[0m
+[0;32mI (175325) SCIGateway: RESULT recibido: nodo=4 MSG_ID=164 COMMAND_ID=2972[0m
+[0;32mI (175325) SCIGateway: STATUS=1 ERROR_CODE=0[0m
+[0;32mI (175326) SCIGateway: La orden 2972 ha finalizado correctamente.[0m
+[0;32mI (175370) SCIGateway: ACK_RESULT enviado a nodo 4, MSG_ID=164[0m
+[0;32mI (175448) SCIGateway: RESULT recibido: nodo=4 MSG_ID=165 COMMAND_ID=2973[0m
+[0;32mI (175448) SCIGateway: STATUS=1 ERROR_CODE=0[0m
+[0;32mI (175449) SCIGateway: La orden 2973 ha finalizado correctamente.[0m
+[0;32mI (175493) SCIGateway: ACK_RESULT enviado a nodo 4, MSG_ID=165[0m
+[0;32mI (181906) SCIGateway: [CICLO 16000] Heap libre: 230232, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (192909) SCIGateway: [CICLO 17000] Heap libre: 230232, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (203910) SCIGateway: [CICLO 18000] Heap libre: 230232, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (214910) SCIGateway: [CICLO 19000] Heap libre: 230232, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (225914) SCIGateway: [CICLO 20000] Heap libre: 230232, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (236245) SCIGateway: DATA recibido: nodo=4 MSG_ID=166[0m
+[0;32mI (236246) SCIGateway: Payload: 19.60,56.80[0m
+[0;32mI (236246) SCIGateway: RSSI: -46 dBm, SNR: 9.50 dB[0m
+[0;32mI (236255) SCIGateway: MQTT publicado: '4,19.60,56.80' en 'gateway/GW0001/data'[0m
+[0;32mI (236262) SCIGateway: Orden de prueba: COMMAND_ID=2974 ACTION=0x01 ACTUADOR=1[0m
+[0;32mI (236268) SCIGateway: Orden de prueba: COMMAND_ID=2975 ACTION=0x02 ACTUADOR=2[0m
+[0;32mI (236276) SCIGateway: Orden de prueba: COMMAND_ID=2976 ACTION=0x01 ACTUADOR=3[0m
+[0;32mI (236356) SCIGateway: ACK_DATA enviado a nodo 4, MSG_ID=166, payload=22 bytes[0m
+[0;32mI (236357) SCIGateway: DATA procesado y confirmado: nodo=4 MSG_ID=166[0m
+[0;32mI (237032) SCIGateway: [CICLO 21000] Heap libre: 229728, WiFi: OK, MQTT: CONECTADO[0m
+[0;33mW (239398) SCIGateway: DATA duplicado: nodo=4 MSG_ID=166[0m
+[0;32mI (239472) SCIGateway: ACK_DATA enviado a nodo 4, MSG_ID=166, payload=22 bytes[0m
+[0;32mI (239594) SCIGateway: RESULT recibido: nodo=4 MSG_ID=167 COMMAND_ID=2974[0m
+[0;32mI (239594) SCIGateway: STATUS=1 ERROR_CODE=0[0m
+[0;32mI (239595) SCIGateway: La orden 2974 ha finalizado correctamente.[0m
+[0;32mI (239639) SCIGateway: ACK_RESULT enviado a nodo 4, MSG_ID=167[0m
+[0;32mI (239717) SCIGateway: RESULT recibido: nodo=4 MSG_ID=168 COMMAND_ID=2975[0m
+[0;32mI (239717) SCIGateway: STATUS=1 ERROR_CODE=0[0m
+[0;32mI (239718) SCIGateway: La orden 2975 ha finalizado correctamente.[0m
+[0;32mI (239762) SCIGateway: ACK_RESULT enviado a nodo 4, MSG_ID=168[0m
+[0;32mI (239840) SCIGateway: RESULT recibido: nodo=4 MSG_ID=169 COMMAND_ID=2976[0m
+[0;32mI (239840) SCIGateway: STATUS=1 ERROR_CODE=0[0m
+[0;32mI (239841) SCIGateway: La orden 2976 ha finalizado correctamente.[0m
+[0;32mI (239885) SCIGateway: ACK_RESULT enviado a nodo 4, MSG_ID=169[0m
+[0;32mI (248250) SCIGateway: [CICLO 22000] Heap libre: 229728, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (259251) SCIGateway: [CICLO 23000] Heap libre: 229728, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (270251) SCIGateway: [CICLO 24000] Heap libre: 229728, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (281254) SCIGateway: [CICLO 25000] Heap libre: 229728, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (292259) SCIGateway: [CICLO 26000] Heap libre: 229728, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (300609) SCIGateway: DATA recibido: nodo=4 MSG_ID=170[0m
+[0;32mI (300610) SCIGateway: Payload: 19.60,56.80[0m
+[0;32mI (300610) SCIGateway: RSSI: -48 dBm, SNR: 9.50 dB[0m
+[0;32mI (300619) SCIGateway: MQTT publicado: '4,19.60,56.80' en 'gateway/GW0001/data'[0m
+[0;32mI (300660) SCIGateway: ACK_DATA enviado a nodo 4, MSG_ID=170, payload=0 bytes[0m
+[0;32mI (300660) SCIGateway: DATA procesado y confirmado: nodo=4 MSG_ID=170[0m
+[0;32mI (303316) SCIGateway: [CICLO 27000] Heap libre: 229728, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (314321) SCIGateway: [CICLO 28000] Heap libre: 229728, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (325322) SCIGateway: [CICLO 29000] Heap libre: 229728, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (336325) SCIGateway: [CICLO 30000] Heap libre: 229728, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (347326) SCIGateway: [CICLO 31000] Heap libre: 229728, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (358326) SCIGateway: [CICLO 32000] Heap libre: 229728, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (361451) SCIGateway: DATA recibido: nodo=4 MSG_ID=171[0m
+[0;32mI (361452) SCIGateway: Payload: 19.70,56.70[0m
+[0;32mI (361452) SCIGateway: RSSI: -36 dBm, SNR: 9.75 dB[0m
+[0;32mI (361460) SCIGateway: MQTT publicado: '4,19.70,56.70' en 'gateway/GW0001/data'[0m
+[0;32mI (361468) SCIGateway: Orden de prueba: COMMAND_ID=2977 ACTION=0x01 ACTUADOR=1[0m
+[0;32mI (361525) SCIGateway: ACK_DATA enviado a nodo 4, MSG_ID=171, payload=8 bytes[0m
+[0;32mI (361526) SCIGateway: DATA procesado y confirmado: nodo=4 MSG_ID=171[0m
+[0;32mI (361630) SCIGateway: RESULT recibido: nodo=4 MSG_ID=172 COMMAND_ID=2977[0m
+[0;32mI (361630) SCIGateway: STATUS=1 ERROR_CODE=0[0m
+[0;32mI (361631) SCIGateway: La orden 2977 ha finalizado correctamente.[0m
+[0;32mI (361675) SCIGateway: ACK_RESULT enviado a nodo 4, MSG_ID=172[0m
+[0;32mI (369457) SCIGateway: [CICLO 33000] Heap libre: 229224, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (380458) SCIGateway: [CICLO 34000] Heap libre: 229224, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (391458) SCIGateway: [CICLO 35000] Heap libre: 229224, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (402461) SCIGateway: [CICLO 36000] Heap libre: 229224, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (413462) SCIGateway: [CICLO 37000] Heap libre: 229224, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (422418) SCIGateway: DATA recibido: nodo=4 MSG_ID=173[0m
+[0;32mI (422419) SCIGateway: Payload: 19.80,56.30[0m
+[0;32mI (422419) SCIGateway: RSSI: -37 dBm, SNR: 9.50 dB[0m
+[0;32mI (422428) SCIGateway: MQTT publicado: '4,19.80,56.30' en 'gateway/GW0001/data'[0m
+[0;32mI (422435) SCIGateway: Orden de prueba: COMMAND_ID=2978 ACTION=0x01 ACTUADOR=1[0m
+[0;32mI (422441) SCIGateway: Orden de prueba: COMMAND_ID=2979 ACTION=0x02 ACTUADOR=2[0m
+[0;32mI (422511) SCIGateway: ACK_DATA enviado a nodo 4, MSG_ID=173, payload=15 bytes[0m
+[0;32mI (422511) SCIGateway: DATA procesado y confirmado: nodo=4 MSG_ID=173[0m
+[0;32mI (422604) SCIGateway: RESULT recibido: nodo=4 MSG_ID=174 COMMAND_ID=2978[0m
+[0;32mI (422604) SCIGateway: STATUS=1 ERROR_CODE=0[0m
+[0;32mI (422605) SCIGateway: La orden 2978 ha finalizado correctamente.[0m
+[0;32mI (422649) SCIGateway: ACK_RESULT enviado a nodo 4, MSG_ID=174[0m
+[0;32mI (422793) SCIGateway: RESULT recibido: nodo=4 MSG_ID=175 COMMAND_ID=2979[0m
+[0;32mI (422793) SCIGateway: STATUS=1 ERROR_CODE=0[0m
+[0;32mI (422794) SCIGateway: La orden 2979 ha finalizado correctamente.[0m
+[0;32mI (422838) SCIGateway: ACK_RESULT enviado a nodo 4, MSG_ID=175[0m
+[0;32mI (424653) SCIGateway: [CICLO 38000] Heap libre: 229224, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (435657) SCIGateway: [CICLO 39000] Heap libre: 229224, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (446658) SCIGateway: [CICLO 40000] Heap libre: 229224, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (457661) SCIGateway: [CICLO 41000] Heap libre: 229224, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (468663) SCIGateway: [CICLO 42000] Heap libre: 229224, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (479663) SCIGateway: [CICLO 43000] Heap libre: 229224, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (483625) SCIGateway: DATA recibido: nodo=4 MSG_ID=176[0m
+[0;32mI (483626) SCIGateway: Payload: 19.90,55.90[0m
+[0;32mI (483626) SCIGateway: RSSI: -39 dBm, SNR: 9.75 dB[0m
+[0;32mI (483635) SCIGateway: MQTT publicado: '4,19.90,55.90' en 'gateway/GW0001/data'[0m
+[0;32mI (483642) SCIGateway: Orden de prueba: COMMAND_ID=2980 ACTION=0x01 ACTUADOR=1[0m
+[0;32mI (483650) SCIGateway: Orden de prueba: COMMAND_ID=2981 ACTION=0x02 ACTUADOR=2[0m
+[0;32mI (483656) SCIGateway: Orden de prueba: COMMAND_ID=2982 ACTION=0x01 ACTUADOR=3[0m
+[0;32mI (483736) SCIGateway: ACK_DATA enviado a nodo 4, MSG_ID=176, payload=22 bytes[0m
+[0;32mI (483736) SCIGateway: DATA procesado y confirmado: nodo=4 MSG_ID=176[0m
+[0;33mW (486342) SCIGateway: DATA duplicado: nodo=4 MSG_ID=176[0m
+[0;32mI (486416) SCIGateway: ACK_DATA enviado a nodo 4, MSG_ID=176, payload=22 bytes[0m
+[0;32mI (486539) SCIGateway: RESULT recibido: nodo=4 MSG_ID=177 COMMAND_ID=2980[0m
+[0;32mI (486539) SCIGateway: STATUS=1 ERROR_CODE=0[0m
+[0;32mI (486540) SCIGateway: La orden 2980 ha finalizado correctamente.[0m
+[0;32mI (486584) SCIGateway: ACK_RESULT enviado a nodo 4, MSG_ID=177[0m
+[0;32mI (486662) SCIGateway: RESULT recibido: nodo=4 MSG_ID=178 COMMAND_ID=2981[0m
+[0;32mI (486662) SCIGateway: STATUS=1 ERROR_CODE=0[0m
+[0;32mI (486663) SCIGateway: La orden 2981 ha finalizado correctamente.[0m
+[0;32mI (486707) SCIGateway: ACK_RESULT enviado a nodo 4, MSG_ID=178[0m
+[0;32mI (486796) SCIGateway: RESULT recibido: nodo=4 MSG_ID=179 COMMAND_ID=2982[0m
+[0;32mI (486796) SCIGateway: STATUS=1 ERROR_CODE=0[0m
+[0;32mI (486797) SCIGateway: La orden 2982 ha finalizado correctamente.[0m
+[0;32mI (486841) SCIGateway: ACK_RESULT enviado a nodo 4, MSG_ID=179[0m
+[0;32mI (490999) SCIGateway: [CICLO 44000] Heap libre: 228720, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (501999) SCIGateway: [CICLO 45000] Heap libre: 228720, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (512999) SCIGateway: [CICLO 46000] Heap libre: 228720, WiFi: OK, MQTT: CONECTADO[0m
+	�[0m
+[0;32mI (36) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (41) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (45) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (50) boot: Enabling RNG early entropy source...[0m
+[0;32mI (55) boot: Partition Table:[0m
+[0;32mI (59) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (66) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (74) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (81) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (89) boot: End of partition table[0m
+[0;32mI (93) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=1f11ch (127260) map[0m
+[0;32mI (147) esp_image: segment 1: paddr=0002f144 vaddr=3ffb0000 size=00ed4h (  3796) load[0m
+[0;32mI (149) esp_image: segment 2: paddr=00030020 vaddr=400d0020 size=8d414h (578580) map[0m
+[0;32mI (362) esp_image: segment 3: paddr=000bd43c vaddr=3ffb0ed4 size=026a8h (  9896) load[0m
+[0;32mI (367) esp_image: segment 4: paddr=000bfaec vaddr=40080000 size=16000h ( 90112) load[0m
+[0;32mI (416) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (416) boot: Disabling RNG early entropy source...[0m
+[0;32mI (427) cpu_start: Multicore app[0m
+[0;32mI (428) cpu_start: Pro cpu up.[0m
+D (428) efuse: In EFUSE_BLK0__DATA3_REG is used 3 bits starting with 9 bit[0m
+D (431) efuse: In EFUSE_BLK0__DATA3_REG is used 1 bits starting with 2 bit[0m
+[0;32mI (438) cpu_start: Starting app cpu, entry point is 0x4008135c[0m
+[0;32mI (0) cpu_start: App cpu up.[0m
+D (452) clk: RTC_SLOW_CLK calibration value: 3281267[0m
+[0;32mI (465) cpu_start: Pro cpu start user code[0m
+[0;32mI (465) cpu_start: cpu freq: 160000000[0m
+[0;32mI (465) cpu_start: Application information:[0m
+[0;32mI (469) cpu_start: Project name:     SCIGateway[0m
+[0;32mI (474) cpu_start: App version:      5937df0-dirty[0m
+[0;32mI (480) cpu_start: Compile time:     Nov 12 2026 11:59:43[0m
+[0;32mI (486) cpu_start: ELF file SHA256:  d9f70202a4ea5ef7...[0m
+[0;32mI (492) cpu_start: ESP-IDF:          v4.4.7[0m
+[0;32mI (497) cpu_start: Min chip rev:     v0.0[0m
+[0;32mI (502) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (506) cpu_start: Chip rev:         v3.0[0m
+D (511) memory_layout: Checking 7 reserved memory ranges:[0m
+D (517) memory_layout: Reserved memory range 0x3ffae000 - 0x3ffae6e0[0m
+D (523) memory_layout: Reserved memory range 0x3ffb0000 - 0x3ffb7c20[0m
+D (529) memory_layout: Reserved memory range 0x3ffe0000 - 0x3ffe0440[0m
+D (536) memory_layout: Reserved memory range 0x3ffe3f20 - 0x3ffe4350[0m
+D (542) memory_layout: Reserved memory range 0x40070000 - 0x40078000[0m
+D (549) memory_layout: Reserved memory range 0x40078000 - 0x40080000[0m
+D (555) memory_layout: Reserved memory range 0x40080000 - 0x40096000[0m
+D (562) memory_layout: Building list of available memory regions:[0m
+D (568) memory_layout: Available memory region 0x3ffae6e0 - 0x3ffb0000[0m
+D (574) memory_layout: Available memory region 0x3ffb7c20 - 0x3ffb8000[0m
+D (581) memory_layout: Available memory region 0x3ffb8000 - 0x3ffc0000[0m
+D (587) memory_layout: Available memory region 0x3ffc0000 - 0x3ffc2000[0m
+D (594) memory_layout: Available memory region 0x3ffc2000 - 0x3ffc4000[0m
+D (601) memory_layout: Available memory region 0x3ffc4000 - 0x3ffc6000[0m
+D (607) memory_layout: Available memory region 0x3ffc6000 - 0x3ffc8000[0m
+D (614) memory_layout: Available memory region 0x3ffc8000 - 0x3ffca000[0m
+D (620) memory_layout: Available memory region 0x3ffca000 - 0x3ffcc000[0m
+D (627) memory_layout: Available memory region 0x3ffcc000 - 0x3ffce000[0m
+D (634) memory_layout: Available memory region 0x3ffce000 - 0x3ffd0000[0m
+D (640) memory_layout: Available memory region 0x3ffd0000 - 0x3ffd2000[0m
+D (647) memory_layout: Available memory region 0x3ffd2000 - 0x3ffd4000[0m
+D (653) memory_layout: Available memory region 0x3ffd4000 - 0x3ffd6000[0m
+D (660) memory_layout: Available memory region 0x3ffd6000 - 0x3ffd8000[0m
+D (667) memory_layout: Available memory region 0x3ffd8000 - 0x3ffda000[0m
+D (673) memory_layout: Available memory region 0x3ffda000 - 0x3ffdc000[0m
+D (680) memory_layout: Available memory region 0x3ffdc000 - 0x3ffde000[0m
+D (686) memory_layout: Available memory region 0x3ffde000 - 0x3ffe0000[0m
+D (693) memory_layout: Available memory region 0x3ffe0440 - 0x3ffe3f20[0m
+D (700) memory_layout: Available memory region 0x3ffe4350 - 0x3ffe8000[0m
+D (706) memory_layout: Available memory region 0x3ffe8000 - 0x3fff0000[0m
+D (713) memory_layout: Available memory region 0x3fff0000 - 0x3fff8000[0m
+D (719) memory_layout: Available memory region 0x3fff8000 - 0x3fffc000[0m
+D (726) memory_layout: Available memory region 0x3fffc000 - 0x40000000[0m
+D (733) memory_layout: Available memory region 0x40096000 - 0x40098000[0m
+D (739) memory_layout: Available memory region 0x40098000 - 0x4009a000[0m
+D (746) memory_layout: Available memory region 0x4009a000 - 0x4009c000[0m
+D (752) memory_layout: Available memory region 0x4009c000 - 0x4009e000[0m
+D (759) memory_layout: Available memory region 0x4009e000 - 0x400a0000[0m
+[0;32mI (766) heap_init: Initializing. RAM available for dynamic allocation:[0m
+D (773) heap_init: New heap initialised at 0x3ffae6e0[0m
+[0;32mI (778) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+D (784) heap_init: New heap initialised at 0x3ffb7c20[0m
+[0;32mI (789) heap_init: At 3FFB7C20 len 000283E0 (160 KiB): DRAM[0m
+[0;32mI (795) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (802) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+D (808) heap_init: New heap initialised at 0x40096000[0m
+[0;32mI (813) heap_init: At 40096000 len 0000A000 (40 KiB): IRAM[0m
+D (820) intr_alloc: Connected src 46 to int 2 (cpu 0)[0m
+D (825) FLASH_HAL: extra_dummy: 1[0m
+D (828) spi_flash: trying chip: issi[0m
+D (832) spi_flash: trying chip: gd[0m
+D (835) spi_flash: trying chip: mxic[0m
+D (839) spi_flash: trying chip: winbond[0m
+D (843) spi_flash: trying chip: generic[0m
+[0;32mI (847) spi_flash: detected chip: generic[0m
+[0;32mI (851) spi_flash: flash io: dio[0m
+[0;33mW (855) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+D (868) cpu_start: calling init function: 0x40143768[0m
+D (873) cpu_start: calling init function: 0x4014368c[0m
+D (878) cpu_start: calling init function: 0x400f0fa4[0m
+D (883) cpu_start: calling init function: 0x400e0fa8[0m
+D (889) cpu_start: calling init function: 0x400ded78[0m
+D (893) cpu_start: calling init function: 0x400dd4e4[0m
+D (898) cpu_start: calling init function: 0x400dc620[0m
+D (903) cpu_start: calling init function: 0x400dc3a0[0m
+D (909) cpu_start: calling init function: 0x400dbb28[0m
+D (914) cpu_start: calling init function: 0x400dba44[0m
+D (919) cpu_start: calling init function: 0x400d9550[0m
+D (924) cpu_start: calling init function: 0x400d8f54[0m
+D (929) cpu_start: calling init function: 0x400d34b0[0m
+D (934) cpu_start: calling init function: 0x400d2728[0m
+D (939) intr_alloc: Connected src 17 to int 3 (cpu 0)[0m
+D (944) intr_alloc: Connected src 24 to int 9 (cpu 0)[0m
+[0;32mI (949) cpu_start: Starting scheduler on PRO CPU.[0m
+D (0) intr_alloc: Connected src 25 to int 2 (cpu 1)[0m
+[0;32mI (4) cpu_start: Starting scheduler on APP CPU.[0m
+D (975) heap_init: New heap initialised at 0x3ffe0440[0m
+D (980) heap_init: New heap initialised at 0x3ffe4350[0m
+D (985) intr_alloc: Connected src 16 to int 12 (cpu 0)[0m
+D (990) partition: Loading the partition table[0m
+D (995) partition: Partition table MD5 verified[0m
+[0;32mI (10[0;32mI (2032) SCIGateway: GLOBALIoT - Gateway LoRa v1.0 Multi-Gateway Fase 2[0m
+[0;32mI (2034) SCIGateway: MQTT Client ID: GlobalIoT_GW0001[0m
+[0;32mI (2035) SCIGateway: Topic DATA: gateway/GW0001/data[0m
+[0;32mI (2039) SCIGateway: Topic ACTUADORES: gateway/GW0001/actuadores[0m
+[0;32mI (2046) SCIGateway: Topic RESPUESTA: gateway/GW0001/respuesta[0m
+[0;32mI (2053) SCIGateway: Identidad del gateway: GW0001[0m
+[0;32mI (2058) SCIGateway: Siguiente COMMAND_ID de prueba: 2983[0m
+[0;32mI (2085) SCIGateway: LoRa iniciado. SyncWord=0x33[0m
+[0;32mI (2197) SCIGateway: Conectando a WiFi...[0m
+[0;32mI (5448) SCIGateway: WiFi conectado con IP: 192.168.1.132[0m
+[0;32mI (5449) SCIGateway: Conectando a MQTT como GlobalIoT_GW0001...[0m
+[0;32mI (5509) SCIGateway: Conectado a MQTT.[0m
+[0;32mI (5512) SCIGateway: Suscrito a: gateway/GW0001/actuadores[0m
+[0;32mI (5513) SCIGateway: Gateway GW0001 preparado.[0m
+[0;32mI (16507) SCIGateway: [CICLO 1000] Heap libre: 231548, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (23308) SCIGateway: DATA recibido: nodo=4 MSG_ID=180[0m
+[0;32mI (23309) SCIGateway: Payload: 20.00,55.70[0m
+[0;32mI (23309) SCIGateway: RSSI: -37 dBm, SNR: 9.00 dB[0m
+[0;32mI (23317) SCIGateway: MQTT publicado: '4,20.00,55.70' en 'gateway/GW0001/data'[0m
+[0;32mI (23359) SCIGateway: ACK_DATA enviado a nodo 4, MSG_ID=180, payload=0 bytes[0m
+[0;32mI (23359) SCIGateway: DATA procesado y confirmado: nodo=4 MSG_ID=180[0m
+[0;32mI (27565) SCIGateway: [CICLO 2000] Heap libre: 230736, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (38568) SCIGateway: [CICLO 3000] Heap libre: 230736, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (49569) SCIGateway: [CICLO 4000] Heap libre: 230736, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (60569) SCIGateway: [CICLO 5000] Heap libre: 230736, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (71573) SCIGateway: [CICLO 6000] Heap libre: 230736, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (82574) SCIGateway: [CICLO 7000] Heap libre: 230736, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (84203) SCIGateway: DATA recibido: nodo=4 MSG_ID=181[0m
+[0;32mI (84204) SCIGateway: Payload: 20.00,55.60[0m
+[0;32mI (84204) SCIGateway: RSSI: -39 dBm, SNR: 9.25 dB[0m
+[0;32mI (84212) SCIGateway: MQTT publicado: '4,20.00,55.60' en 'gateway/GW0001/data'[0m
+[0;32mI (84220) SCIGateway: Orden de prueba: COMMAND_ID=2983 ACTION=0x01 ACTUADOR=1[0m
+[0;32mI (84277) SCIGateway: ACK_DATA enviado a nodo 4, MSG_ID=181, payload=8 bytes[0m
+[0;32mI (84277) SCIGateway: DATA procesado y confirmado: nodo=4 MSG_ID=181[0m
+[0;32mI (84392) SCIGateway: RESULT recibido: nodo=4 MSG_ID=182 COMMAND_ID=2983[0m
+[0;32mI (84392) SCIGateway: STATUS=1 ERROR_CODE=0[0m
+[0;32mI (84393) SCIGateway: La orden 2983 ha finalizado correctamente.[0m
+[0;32mI (84437) SCIGateway: ACK_RESULT enviado a nodo 4, MSG_ID=182[0m
+[0;32mI (93699) SCIGateway: [CICLO 8000] Heap libre: 230232, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (104705) SCIGateway: [CICLO 9000] Heap libre: 230232, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (115706) SCIGateway: [CICLO 10000] Heap libre: 230232, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (126712) SCIGateway: [CICLO 11000] Heap libre: 230232, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (137713) SCIGateway: [CICLO 12000] Heap libre: 230232, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (145227) SCIGateway: DATA recibido: nodo=4 MSG_ID=183[0m
+[0;32mI (145228) SCIGateway: Payload: 20.10,55.50[0m
+[0;32mI (145228) SCIGateway: RSSI: -36 dBm, SNR: 9.50 dB[0m
+[0;32mI (145236) SCIGateway: MQTT publicado: '4,20.10,55.50' en 'gateway/GW0001/data'[0m
+[0;32mI (145244) SCIGateway: Orden de prueba: COMMAND_ID=2984 ACTION=0x01 ACTUADOR=1[0m
+[0;32mI (145250) SCIGateway: Orden de prueba: COMMAND_ID=2985 ACTION=0x02 ACTUADOR=2[0m
+[0;32mI (145320) SCIGateway: ACK_DATA enviado a nodo 4, MSG_ID=183, payload=15 bytes[0m
+[0;32mI (145320) SCIGateway: DATA procesado y confirmado: nodo=4 MSG_ID=183[0m
+[0;32mI (145413) SCIGateway: RESULT recibido: nodo=4 MSG_ID=184 COMMAND_ID=2984[0m
+[0;32mI (145413) SCIGateway: STATUS=1 ERROR_CODE=0[0m
+[0;32mI (145414) SCIGateway: La orden 2984 ha finalizado correctamente.[0m
+[0;32mI (145458) SCIGateway: ACK_RESULT enviado a nodo 4, MSG_ID=184[0m
+[0;32mI (145548) SCIGateway: RESULT recibido: nodo=4 MSG_ID=185 COMMAND_ID=2985[0m
+[0;32mI (145548) SCIGateway: STATUS=1 ERROR_CODE=0[0m
+[0;32mI (145549) SCIGateway: La orden 2985 ha finalizado correctamente.[0m
+[0;32mI (145593) SCIGateway: ACK_RESULT enviado a nodo 4, MSG_ID=185[0m
+[0;32mI (148904) SCIGateway: [CICLO 13000] Heap libre: 230232, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (159907) SCIGateway: [CICLO 14000] Heap libre: 230232, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (170908) SCIGateway: [CICLO 15000] Heap libre: 230232, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (181909) SCIGateway: [CICLO 16000] Heap libre: 230232, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (192916) SCIGateway: [CICLO 17000] Heap libre: 230232, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (203917) SCIGateway: [CICLO 18000] Heap libre: 230232, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (206415) SCIGateway: DATA recibido: nodo=4 MSG_ID=186[0m
+[0;32mI (206416) SCIGateway: Payload: 20.10,55.50[0m
+[0;32mI (206416) SCIGateway: RSSI: -40 dBm, SNR: 9.75 dB[0m
+[0;32mI (206425) SCIGateway: MQTT publicado: '4,20.10,55.50' en 'gateway/GW0001/data'[0m
+[0;32mI (206432) SCIGateway: Orden de prueba: COMMAND_ID=2986 ACTION=0x01 ACTUADOR=1[0m
+[0;32mI (206439) SCIGateway: Orden de prueba: COMMAND_ID=2987 ACTION=0x02 ACTUADOR=2[0m
+[0;32mI (206446) SCIGateway: Orden de prueba: COMMAND_ID=2988 ACTION=0x01 ACTUADOR=3[0m
+[0;32mI (206526) SCIGateway: ACK_DATA enviado a nodo 4, MSG_ID=186, payload=22 bytes[0m
+[0;32mI (206527) SCIGateway: DATA procesado y confirmado: nodo=4 MSG_ID=186[0m
+[0;33mW (208831) SCIGateway: DATA duplicado: nodo=4 MSG_ID=186[0m
+[0;32mI (208905) SCIGateway: ACK_DATA enviado a nodo 4, MSG_ID=186, payload=22 bytes[0m
+[0;32mI (209016) SCIGateway: RESULT recibido: nodo=4 MSG_ID=187 COMMAND_ID=2986[0m
+[0;32mI (209016) SCIGateway: STATUS=1 ERROR_CODE=0[0m
+[0;32mI (209017) SCIGateway: La orden 2986 ha finalizado correctamente.[0m
+[0;32mI (209061) SCIGateway: ACK_RESULT enviado a nodo 4, MSG_ID=187[0m
+[0;32mI (209150) SCIGateway: RESULT recibido: nodo=4 MSG_ID=188 COMMAND_ID=2987[0m
+[0;32mI (209150) SCIGateway: STATUS=1 ERROR_CODE=0[0m
+[0;32mI (209151) SCIGateway: La orden 2987 ha finalizado correctamente.[0m
+[0;32mI (209195) SCIGateway: ACK_RESULT enviado a nodo 4, MSG_ID=188[0m
+[0;32mI (209284) SCIGateway: RESULT recibido: nodo=4 MSG_ID=189 COMMAND_ID=2988[0m
+[0;32mI (209284) SCIGateway: STATUS=1 ERROR_CODE=0[0m
+[0;32mI (209285) SCIGateway: La orden 2988 ha finalizado correctamente.[0m
+[0;32mI (209329) SCIGateway: ACK_RESULT enviado a nodo 4, MSG_ID=189[0m
+[0;32mI (215247) SCIGateway: [CICLO 19000] Heap libre: 229728, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (226253) SCIGateway: [CICLO 20000] Heap libre: 229728, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (237254) SCIGateway: [CICLO 21000] Heap libre: 229728, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (248257) SCIGateway: [CICLO 22000] Heap libre: 229728, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (259258) SCIGateway: [CICLO 23000] Heap libre: 229728, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (270028) SCIGateway: DATA recibido: nodo=4 MSG_ID=190[0m
+[0;32mI (270029) SCIGateway: Payload: 20.10,55.40[0m
+[0;32mI (270029) SCIGateway: RSSI: -39 dBm, SNR: 9.50 dB[0m
+[0;32mI (270037) SCIGateway: MQTT publicado: '4,20.10,55.40' en 'gateway/GW0001/data'[0m
+[0;32mI (270079) SCIGateway: ACK_DATA enviado a nodo 4, MSG_ID=190, payload=0 bytes[0m
+[0;32mI (270079) SCIGateway: DATA procesado y confirmado: nodo=4 MSG_ID=190[0m
+[0;32mI (270314) SCIGateway: [CICLO 24000] Heap libre: 229728, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (281318) SCIGateway: [CICLO 25000] Heap libre: 229728, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (292319) SCIGateway: [CICLO 26000] Heap libre: 229728, WiFi: OK, MQTT: CONECTADO[0m
+�r��[0m
+[0;32mI (36) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (41) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (45) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (50) boot: Enabling RNG early entropy source...[0m
+[0;32mI (55) boot: Partition Table:[0m
+[0;32mI (59) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (66) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (74) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (81) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (89) boot: End of partition table[0m
+[0;32mI (93) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=1f11ch (127260) map[0m
+[0;32mI (147) esp_image: segment 1: paddr=0002f144 vaddr=3ffb0000 size=00ed4h (  3796) load[0m
+[0;32mI (149) esp_image: segment 2: paddr=00030020 vaddr=400d0020 size=8d414h (578580) map[0m
+[0;32mI (362) esp_image: segment 3: paddr=000bd43c vaddr=3ffb0ed4 size=026a8h (  9896) load[0m
+[0;32mI (367) esp_image: segment 4: paddr=000bfaec vaddr=40080000 size=16000h ( 90112) load[0m
+[0;32mI (416) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (416) boot: Disabling RNG early entropy source...[0m
+[0;32mI (427) cpu_start: Multicore app[0m
+[0;32mI (428) cpu_start: Pro cpu up.[0m
+D (428) efuse: In EFUSE_BLK0__DATA3_REG is used 3 bits starting with 9 bit[0m
+D (431) efuse: In EFUSE_BLK0__DATA3_REG is used 1 bits starting with 2 bit[0m
+[0;32mI (438) cpu_start: Starting app cpu, entry point is 0x4008135c[0m
+[0;32mI (0) cpu_start: App cpu up.[0m
+D (452) clk: RTC_SLOW_CLK calibration value: 3271104[0m
+[0;32mI (465) cpu_start: Pro cpu start user code[0m
+[0;32mI (465) cpu_start: cpu freq: 160000000[0m
+[0;32mI (465) cpu_start: Application information:[0m
+[0;32mI (469) cpu_start: Project name:     SCIGateway[0m
+[0;32mI (474) cpu_start: App version:      5937df0-dirty[0m
+[0;32mI (480) cpu_start: Compile time:     Nov 12 2026 11:59:43[0m
+[0;32mI (486) cpu_start: ELF file SHA256:  d9f70202a4ea5ef7...[0m
+[0;32mI (492) cpu_start: ESP-IDF:          v4.4.7[0m
+[0;32mI (497) cpu_start: Min chip rev:     v0.0[0m
+[0;32mI (502) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (506) cpu_start: Chip rev:         v3.0[0m
+D (511) memory_layout: Checking 7 reserved memory ranges:[0m
+D (517) memory_layout: Reserved memory range 0x3ffae000 - 0x3ffae6e0[0m
+D (523) memory_layout: Reserved memory range 0x3ffb0000 - 0x3ffb7c20[0m
+D (529) memory_layout: Reserved memory range 0x3ffe0000 - 0x3ffe0440[0m
+D (536) memory_layout: Reserved memory range 0x3ffe3f20 - 0x3ffe4350[0m
+D (542) memory_layout: Reserved memory range 0x40070000 - 0x40078000[0m
+D (549) memory_layout: Reserved memory range 0x40078000 - 0x40080000[0m
+D (555) memory_layout: Reserved memory range 0x40080000 - 0x40096000[0m
+D (562) memory_layout: Building list of available memory regions:[0m
+D (568) memory_layout: Available memory region 0x3ffae6e0 - 0x3ffb0000[0m
+D (574) memory_layout: Available memory region 0x3ffb7c20 - 0x3ffb8000[0m
+D (581) memory_layout: Available memory region 0x3ffb8000 - 0x3ffc0000[0m
+D (587) memory_layout: Available memory region 0x3ffc0000 - 0x3ffc2000[0m
+D (594) memory_layout: Available memory region 0x3ffc2000 - 0x3ffc4000[0m
+D (601) memory_layout: Available memory region 0x3ffc4000 - 0x3ffc6000[0m
+D (607) memory_layout: Available memory region 0x3ffc6000 - 0x3ffc8000[0m
+D (614) memory_layout: Available memory region 0x3ffc8000 - 0x3ffca000[0m
+D (620) memory_layout: Available memory region 0x3ffca000 - 0x3ffcc000[0m
+D (627) memory_layout: Available memory region 0x3ffcc000 - 0x3ffce000[0m
+D (634) memory_layout: Available memory region 0x3ffce000 - 0x3ffd0000[0m
+D (640) memory_layout: Available memory region 0x3ffd0000 - 0x3ffd2000[0m
+D (647) memory_layout: Available memory region 0x3ffd2000 - 0x3ffd4000[0m
+D (653) memory_layout: Available memory region 0x3ffd4000 - 0x3ffd6000[0m
+D (660) memory_layout: Available memory region 0x3ffd6000 - 0x3ffd8000[0m
+D (667) memory_layout: Available memory region 0x3ffd8000 - 0x3ffda000[0m
+D (673) memory_layout: Available memory region 0x3ffda000 - 0x3ffdc000[0m
+D (680) memory_layout: Available memory region 0x3ffdc000 - 0x3ffde000[0m
+D (686) memory_layout: Available memory region 0x3ffde000 - 0x3ffe0000[0m
+D (693) memory_layout: Available memory region 0x3ffe0440 - 0x3ffe3f20[0m
+D (700) memory_layout: Available memory region 0x3ffe4350 - 0x3ffe8000[0m
+D (706) memory_layout: Available memory region 0x3ffe8000 - 0x3fff0000[0m
+D (713) memory_layout: Available memory region 0x3fff0000 - 0x3fff8000[0m
+D (719) memory_layout: Available memory region 0x3fff8000 - 0x3fffc000[0m
+D (726) memory_layout: Available memory region 0x3fffc000 - 0x40000000[0m
+D (733) memory_layout: Available memory region 0x40096000 - 0x40098000[0m
+D (739) memory_layout: Available memory region 0x40098000 - 0x4009a000[0m
+D (746) memory_layout: Available memory region 0x4009a000 - 0x4009c000[0m
+D (752) memory_layout: Available memory region 0x4009c000 - 0x4009e000[0m
+D (759) memory_layout: Available memory region 0x4009e000 - 0x400a0000[0m
+[0;32mI (766) heap_init: Initializing. RAM available for dynamic allocation:[0m
+D (773) heap_init: New heap initialised at 0x3ffae6e0[0m
+[0;32mI (778) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+D (784) heap_init: New heap initialised at 0x3ffb7c20[0m
+[0;32mI (789) heap_init: At 3FFB7C20 len 000283E0 (160 KiB): DRAM[0m
+[0;32mI (795) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (802) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+D (808) heap_init: New heap initialised at 0x40096000[0m
+[0;32mI (813) heap_init: At 40096000 len 0000A000 (40 KiB): IRAM[0m
+D (820) intr_alloc: Connected src 46 to int 2 (cpu 0)[0m
+D (825) FLASH_HAL: extra_dummy: 1[0m
+D (828) spi_flash: trying chip: issi[0m
+D (832) spi_flash: trying chip: gd[0m
+D (835) spi_flash: trying chip: mxic[0m
+D (839) spi_flash: trying chip: winbond[0m
+D (843) spi_flash: trying chip: generic[0m
+[0;32mI (847) spi_flash: detected chip: generic[0m
+[0;32mI (851) spi_flash: flash io: dio[0m
+[0;33mW (855) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+D (868) cpu_start: calling init function: 0x40143768[0m
+D (873) cpu_start: calling init function: 0x4014368c[0m
+D (878) cpu_start: calling init function: 0x400f0fa4[0m
+D (883) cpu_start: calling init function: 0x400e0fa8[0m
+D (889) cpu_start: calling init function: 0x400ded78[0m
+D (893) cpu_start: calling init function: 0x400dd4e4[0m
+D (898) cpu_start: calling init function: 0x400dc620[0m
+D (903) cpu_start: calling init function: 0x400dc3a0[0m
+D (909) cpu_start: calling init function: 0x400dbb28[0m
+D (914) cpu_start: calling init function: 0x400dba44[0m
+D (919) cpu_start: calling init function: 0x400d9550[0m
+D (924) cpu_start: calling init function: 0x400d8f54[0m
+D (929) cpu_start: calling init function: 0x400d34b0[0m
+D (934) cpu_start: calling init function: 0x400d2728[0m
+D (939) intr_alloc: Connected src 17 to int 3 (cpu 0)[0m
+D (944) intr_alloc: Connected src 24 to int 9 (cpu 0)[0m
+[0;32mI (949) cpu_start: Starting scheduler on PRO CPU.[0m
+D (0) intr_alloc: Connected src 25 to int 2 (cpu 1)[0m
+[0;32mI (4) cpu_start: Starting scheduler on APP CPU.[0m
+D (975) heap_init: New heap initialised at 0x3ffe0440[0m
+D (980) heap_init: New heap initialised at 0x3ffe4350[0m
+D (985) intr_alloc: Connected src 16 to int 12 (cpu 0)[0m
+D (990) partition: Loading the partition table[0m
+D (995) partition: Partition table MD5 verified[0m
+[0;32mI (10[0;32mI (2032) SCIGateway: GLOBALIoT - Gateway LoRa v1.0 Multi-Gateway Fase 2[0m
+[0;32mI (2034) SCIGateway: MQTT Client ID: GlobalIoT_GW0001[0m
+[0;32mI (2035) SCIGateway: Topic DATA: gateway/GW0001/data[0m
+[0;32mI (2039) SCIGateway: Topic ACTUADORES: gateway/GW0001/actuadores[0m
+[0;32mI (2046) SCIGateway: Topic RESPUESTA: gateway/GW0001/respuesta[0m
+[0;32mI (2053) SCIGateway: Identidad del gateway: GW0001[0m
+[0;32mI (2058) SCIGateway: Siguiente COMMAND_ID de prueba: 2989[0m
+[0;32mI (2085) SCIGateway: LoRa iniciado. SyncWord=0x33[0m
+[0;32mI (2197) SCIGateway: Conectando a WiFi...[0m
+[0;32mI (4948) SCIGateway: WiFi conectado con IP: 192.168.1.132[0m
+[0;32mI (4949) SCIGateway: Conectando a MQTT como GlobalIoT_GW0001...[0m
+[0;32mI (5009) SCIGateway: Conectado a MQTT.[0m
+[0;32mI (5013) SCIGateway: Suscrito a: gateway/GW0001/actuadores[0m
+[0;32mI (5014) SCIGateway: Gateway GW0001 preparado.[0m
+[0;32mI (16009) SCIGateway: [CICLO 1000] Heap libre: 231548, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (16385) SCIGateway: DATA recibido: nodo=4 MSG_ID=191[0m
+[0;32mI (16386) SCIGateway: Payload: 20.10,55.20[0m
+[0;32mI (16386) SCIGateway: RSSI: -41 dBm, SNR: 10.00 dB[0m
+[0;32mI (16394) SCIGateway: MQTT publicado: '4,20.10,55.20' en 'gateway/GW0001/data'[0m
+[0;32mI (16436) SCIGateway: ACK_DATA enviado a nodo 4, MSG_ID=191, payload=0 bytes[0m
+[0;32mI (16436) SCIGateway: DATA procesado y confirmado: nodo=4 MSG_ID=191[0m
+[0;32mI (27069) SCIGateway: [CICLO 2000] Heap libre: 230736, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (38072) SCIGateway: [CICLO 3000] Heap libre: 230736, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (49073) SCIGateway: [CICLO 4000] Heap libre: 230736, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (60073) SCIGateway: [CICLO 5000] Heap libre: 230736, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (71080) SCIGateway: [CICLO 6000] Heap libre: 230736, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (77199) SCIGateway: DATA recibido: nodo=4 MSG_ID=192[0m
+[0;32mI (77199) SCIGateway: Payload: 20.10,55.30[0m
+[0;32mI (77199) SCIGateway: RSSI: -39 dBm, SNR: 9.75 dB[0m
+[0;32mI (77208) SCIGateway: MQTT publicado: '4,20.10,55.30' en 'gateway/GW0001/data'[0m
+[0;32mI (77215) SCIGateway: Orden de prueba: COMMAND_ID=2989 ACTION=0x01 ACTUADOR=1[0m
+[0;32mI (77272) SCIGateway: ACK_DATA enviado a nodo 4, MSG_ID=192, payload=8 bytes[0m
+[0;32mI (77273) SCIGateway: DATA procesado y confirmado: nodo=4 MSG_ID=192[0m
+[0;32mI (77377) SCIGateway: RESULT recibido: nodo=4 MSG_ID=193 COMMAND_ID=2989[0m
+[0;32mI (77377) SCIGateway: STATUS=1 ERROR_CODE=0[0m
+[0;32mI (77378) SCIGateway: La orden 2989 ha finalizado correctamente.[0m
+[0;32mI (77422) SCIGateway: ACK_RESULT enviado a nodo 4, MSG_ID=193[0m
+[0;32mI (82207) SCIGateway: [CICLO 7000] Heap libre: 230232, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (93207) SCIGateway: [CICLO 8000] Heap libre: 230232, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (104211) SCIGateway: [CICLO 9000] Heap libre: 230232, WiFi: OK, MQTT: CONECTADO[0m
+[0;32mI (115212) SCIGateway: [CICLO 10000] Heap libre: 230232, WiFi: OK, MQTT: CONECTADO[0m

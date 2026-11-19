@@ -73,4 +73,5 @@ $<TARGET_FILE:__idf_arduino>
 $<TARGET_FILE:__idf_LoRa>
 $<TARGET_FILE:__idf_PubSubClient>
 $<TARGET_FILE:__idf_DHT>
+$<TARGET_FILE:__idf_Preferences>
 $<TARGET_FILE:__idf_main>
